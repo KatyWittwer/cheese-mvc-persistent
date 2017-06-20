@@ -28,7 +28,7 @@ public class CategoryController {
     @Autowired
     private CategoryDao categoryDao;
 
-    @RequestMapping("")
+    @RequestMapping("/category")
     public String index(Model model) {
         model.addAttribute("categories", categoryDao.findAll());
         model.addAttribute("title", "Categories");
@@ -37,14 +37,14 @@ public class CategoryController {
 
     }
 
-    @RequestMapping(value = "add", method = RequestMethod.GET)
+    @RequestMapping(value = "category/add", method = RequestMethod.GET)
     public String displayAddCategoryForm(Model model) {
         model.addAttribute("title", "Add Category");
         model.addAttribute(new Category());
-        return "cheese/add";
+        return "category/add";
     }
 
-    @RequestMapping(value = "/category/add", method = RequestMethod.POST)
+    @RequestMapping(value = "category/add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute @Valid Category category, Errors errors) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Category");
