@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div>
-    <ul>
-        <li th:each="item : ${category.name}" th:text="${category}">Categories</li>
-    </ul>
-</div>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${categories} and ${categories.size()}">no categories :(</p>
+
+
+<table class="table">
+
+    <tr>
+        <th>Category</th>
+
+    </tr>
+
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.name}"></td>
+    </tr>
+
+</table>
+<a href="category/add.html" th:href="@{/category/add}">Add Category</a>
 
 </body>
 </html>

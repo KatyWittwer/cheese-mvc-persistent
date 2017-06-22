@@ -1,8 +1,6 @@
 package org.launchcode.controllers;
 
 import org.launchcode.models.Category;
-import org.launchcode.models.Cheese;
-import org.launchcode.models.CheeseType;
 import org.launchcode.models.data.CategoryDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,23 +26,23 @@ public class CategoryController {
     @Autowired
     private CategoryDao categoryDao;
 
-    @RequestMapping("/category")
+    @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("categories", categoryDao.findAll());
         model.addAttribute("title", "Categories");
 
-        return "index";
+        return "category/index";
 
     }
 
-    @RequestMapping(value = "category/add", method = RequestMethod.GET)
+    @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddCategoryForm(Model model) {
         model.addAttribute("title", "Add Category");
         model.addAttribute(new Category());
         return "category/add";
     }
 
-    @RequestMapping(value = "category/add", method = RequestMethod.POST)
+    @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute @Valid Category category, Errors errors) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Category");
