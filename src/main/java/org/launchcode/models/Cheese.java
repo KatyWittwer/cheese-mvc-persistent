@@ -25,13 +25,6 @@ public class Cheese {
 
     @ManyToOne
     private Category category;
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     @ManyToMany(mappedBy = "cheeses")
     private List<Menu> menus;
@@ -61,6 +54,14 @@ public class Cheese {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
 
